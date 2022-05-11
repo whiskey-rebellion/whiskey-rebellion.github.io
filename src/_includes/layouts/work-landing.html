@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %} 
+
+{% block content %}
+  <article>
+    
+  </article>
+  <div class="[ panel dot-shadow ] [ bg-tertiary-glare ]">
+    <article class="[ gallery ] [ flow flow-space-800 ]">
+      {% for item in collections.work %}
+      <h2 class="[ gallery__heading ] [ text-700 md:text-900 ]">
+        {{ item.data.title }}
+      </h2>
+      <p class="[ gallery__summary ] [ measure-short flow-space-300 ]">
+        {{ item.data.summary }}
+      </p>
+      <a href="{{ item.url }}" class="button">See this work</a>
+      {% endfor %}
+    </article>
+  </div>
+{% endblock %}
