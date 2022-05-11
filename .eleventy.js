@@ -11,6 +11,9 @@ module.exports = config => {
     return sortByTitleOrder(collection.getFilteredByGlob('./src/dances/*.md'));
   });
 
+  // Tell 11ty to use the .eleventyignore and ignore our .gitignore file
+  config.setUseGitIgnore(false);
+
   // Return your Object options:
   return {
     markdownTemplateEngine: 'njk',
@@ -23,3 +26,4 @@ module.exports = config => {
   }
 
 };
+
