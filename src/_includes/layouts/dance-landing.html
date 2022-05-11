@@ -5,7 +5,7 @@
   <h1>{{ title }}</h1>
   {{ content | safe }}
 
-  <dl>
+  <dl class="definition-group">
     {% for item in collections.dances %}
     <dt><a href="{{ item.url }}">{{ item.data.title }}</a></dt>
     <dd>{{ item.data.summary }}</dd>
