@@ -1,6 +1,6 @@
 ---
 title: 'Dances'
-layout: 'layouts/work-landing.html'
+layout: 'layouts/dance-landing.html'
 ---
 
 Whiskey Rebellion dances the Cotswold Morris traditions of Bampton and Bucknell and 

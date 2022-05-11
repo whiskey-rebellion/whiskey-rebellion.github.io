@@ -7,8 +7,8 @@ module.exports = config => {
   config.addPassthroughCopy('./src/images/');
 
   // Returns work items, sorted by title order
-  config.addCollection('work', collection => {
-    return sortByTitleOrder(collection.getFilteredByGlob('./src/work/*.md'));
+  config.addCollection('dances', collection => {
+    return sortByTitleOrder(collection.getFilteredByGlob('./src/dances/*.md'));
   });
 
   // Return your Object options:

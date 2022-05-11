@@ -6,7 +6,7 @@
   {{ content | safe }}
 
   <dl>
-    {% for item in collections.work %}
+    {% for item in collections.dances %}
     <dt><a href="{{ item.url }}">{{ item.data.title }}</a></dt>
     <dd>{{ item.data.summary }}</dd>
     {% endfor %}
