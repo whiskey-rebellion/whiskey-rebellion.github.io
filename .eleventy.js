@@ -6,7 +6,7 @@ module.exports = config => {
   config.addPassthroughCopy('./src/css/');
   config.addPassthroughCopy('./src/images/');
 
-  // Returns work items, sorted by display order
+  // Returns work items, sorted by title order
   config.addCollection('work', collection => {
     return sortByTitleOrder(collection.getFilteredByGlob('./src/work/*.md'));
   });
