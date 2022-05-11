@@ -1,6 +1,6 @@
 ---
-layout: 'layouts/home.html'
 title: 'Welcome'
+layout: 'layouts/home.html'
 ---
 So, we're trying to see how hard it is to get Eleventy running in GitHub pages. 
 
