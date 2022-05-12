@@ -14,6 +14,7 @@
     "@11ty/eleventy": "^1.0.1"
   },
   "dependencies": {
+    "abc2svg": "^1.21.7",
     "gorko": "^0.9.1",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",

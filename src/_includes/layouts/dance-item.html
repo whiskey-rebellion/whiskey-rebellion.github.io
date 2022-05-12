@@ -12,5 +12,18 @@
       </div>
     </div>
   </header>
+  <article>
+    <script type="text/vnd.abc">
+      %abc-2.2
+      %%musicfont url(../../js/abc2svg/abc2svg.woff)
+      %%pagewidth 14cm
+      %%bgcolor white
+      %%topspace 0
+      %%composerspace 0
+      %%leftmargin 0.8cm
+      %%rightmargin 0.8cm
+    </script>
+    {{ content | safe }}
+  </article>
 </section>
 {% endblock %}

@@ -5,6 +5,7 @@ module.exports = config => {
   // Set directories to pass through to the docs folder
   config.addPassthroughCopy('./src/css/');
   config.addPassthroughCopy('./src/images/');
+  config.addPassthroughCopy('./src/js/');
 
   // Returns work items, sorted by title order
   config.addCollection('dances', collection => {

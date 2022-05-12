@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{ site.name }} | {{ title }}</title>
+    <script src="/js/abc2svg/abcweb-1.js"></script>
+    <script src="/js/abc2svg/snd-1.js"></script>
     <style>{% include "css/critical.css" %}</style>
     {# Add facility for pages to delare an array of critical styles #}
     {% if pageCriticalStyles %}
@@ -20,6 +22,15 @@
         <link rel="stylesheet" media="print" href="{{ item }}?{{ assetHash }}" onload="this.media='all'" />
       {% endfor %}
     {% endif %}
+    <style>
+      svg { 
+        display: block; 
+      }
+      @media print {
+        body { margin: 0; padding: 0; border: 0; }
+        .nop { display: none; } 
+      }
+    </style>
   </head>
   <body>
     <div class="site-wrap">

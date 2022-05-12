@@ -1,0 +1,472 @@
+<style>
+p{margin-left:.5cm;max-width:21cm}
+li{margin-left:.5cm;max-width:20cm}
+li p{margin-left:0}
+</style>
+<h2>abc2svg</h2>
+<p><strong>abc2svg</strong> is a set of ECMAscript files that handle the
+<a href="http://abcnotation.com/">ABC music notation</a>. This includes
+editing, displaying, printing, playing the music files and
+converting them to other formats such as ABC and MEI notations.</p>
+<p>The <strong>abc2svg</strong> core is based on the
+<a href="https://github.com/lewdlime/abcm2ps">abcm2ps</a> C code
+which requires compilation on every operating system.
+The <strong>abc2svg</strong> scripts can run in any system with no compilation on
+any platform that contains an internet browser. This includes MS-Windows,
+Apple, and Unix-like systems (Linux, BSD...) as well as portable devices
+such as cell phones and iPads.</p>
+<p>A description of the ABC parameters that relate to both abcm2ps
+and abc2svg can be found <a href="http://moinejf.free.fr/abcm2ps-doc/index.html" title="abc2svg documentation">here</a>.</p>
+<h3>1. Web browser usage</h3>
+<h4>1.1 Rendering ABC files from a local or remote source</h4>
+<p>After accessing ABC files with a web browser either from a local or web
+source, you can render or play the music without much preparation.
+One approach uses <a href="https://en.wikipedia.org/wiki/Bookmarklet">bookmarklets</a>.</p>
+<p>A bookmarklet is the same as a normal bookmark in a web browser.
+Its title (or name) is anything you want to use to identify it and its URL
+(or location or address) is javascript code starting by <code>javascript:</code>.
+First, create a bookmark from this page adding it to your library of
+bookmarks. Next, edit this mark changing the title and the URL. (Details
+for editing a bookmark are specific for each browser. To get instructions,
+search on the internet the name of the browser and keywords such as
+'bookmarklet' and 'javascript in url'). To edit the URL, extract
+the javascript code
+by right clicking on one of the bookmarklets below and selecting
+copy url. Then, paste this code into the URL of your new bookmark
+in your library.</p>
+<p>To use a abc2svg bookmarklet, first load an ABC file into your
+browser either from a web site of from a file on your system.
+Once you see the textual abc code, click on the bookmarklet
+that you created. After a slight delay depending upon the
+complexity of the abc code, it should be replaced by a music
+representation or a list of the contents of the ABC file. Here
+are two bookmarklets that you can try.</p>
+<p>This
+<a href="javascript:(function(){var%20s,n=2,d=document,b=d.body;d.head.innerHTML='&lt;style&gt;svg{display:block};@media print{body{margin:0;padding:0;border:0};.nop{display:none}}&lt;/style&gt;\n';b.innerHTML='\n%25abc-2.2%25%3c!--\n'+b.textContent+'%25--%3e\n';function%20f(u){s=d.createElement('script');s.src='http://moinejf.free.fr/js/'+u;s.onload=function(){if(--n==0)dom_loaded()};d.head.appendChild(s)};f('abcweb-1.js');f('snd-1.js')})()"
+title="Copy me">first abc2svg bookmarklet</a>
+renders all the music it finds in the page currently displayed.<br>
+Once the music is displayed, clicking inside a tune starts playing it
+from the beginning.
+Clicking on a particular note or rest starts playing from that point.<br>
+To print or convert the music to a PDF file,
+simply click on the 'Print' button of the web browser.
+(If the 'Print' button does not appear on your browser menu,
+try right clicking on the web page.)</p>
+<p>Alternatively, if your source contains many tunes, you can
+use this
+<a href="javascript:(function(){var%20s,n=2,d=document,b=d.body;d.head.innerHTML='&lt;style&gt;svg{display:block};@media print{body{margin:0;padding:0;border:0};.nop{display:none}}&lt;/style&gt;\n';b.innerHTML='\n%25abc-2.2%25%3c!--\n'+b.textContent+'%25--%3e\n';function%20f(u){s=d.createElement('script');s.src='http://moinejf.free.fr/js/'+u;s.onload=function(){if(--n==0)dom_loaded()};d.head.appendChild(s)};f('abcweb1-1.js');f('snd-1.js')})()"
+title="Copy me">second bookmarklet</a>.
+The browser will list the titles of the tunes.
+Clicking on a title displays the tune.
+Playing and printing work in the same manner as above.<br>
+The generated pages contain a yellow menu in the top right corner which permits
+you to return to the tune list or to modify the music. With this last option,
+you can adjust the page size before printing, correct the ABC syntax or
+do some transposition.
+Note that these changes stay only with the browser and are not saved
+to your system.</p>
+<p>If you want to experiment with these bookmarklets, here are some raw ABC files:</p>
+<ul>
+<li><a href="http://moinejf.free.fr/abc/agora.abc" title="agora.abc">from my site</a></li>
+<li><a href="http://www.cranfordpub.com/tunes/abcs/NatalieBlueprint.txt" title="Blueprint">from Cranford Publications</a></li>
+</ul>
+<h4>1.2 Writing, playing and printing music with the abc2svg editor</h4>
+<p>The <a href="http://moinejf.free.fr/js/edit-1.xhtml" title="ABC editor based on abc2svg">abc2svg editor</a>
+is another example of what can be done with <strong>abc2svg</strong>.</p>
+<p>If you are unfamiliar with ABC music notation, just copy this ABC sequence below
+and paste it into the text area of the editor.</p>
+<pre><code>X:1
+T:C scale
+M:C
+L:1/4
+K:C
+CDEF|GABc|
+</code></pre>
+<p>If your ABC files contain <code>%%abc-include</code>, then you must:</p>
+<ul>
+<li>load the ABC file using the browse button,</li>
+<li>click the include file name button,</li>
+<li>and load the include file using the same previous browse button.</li>
+</ul>
+<p>Only one included file is allowed.</p>
+<p>If you have a US keyboard, its behaviour can be changed for easier music
+entering by one of these bookmarklets:
+<a href="javascript:(function(){if(typeof%20abc2svg.loadjs=='function'){abc2svg.loadjs('abckbd-1.js')}else{alert('use%20with%20abc2svg%20editor')}})()"
+title="Copy me">keyboard 1</a>
+and
+<a href="javascript:(function(){if(typeof%20abc2svg.loadjs=='function'){abc2svg.loadjs('abckbd2-1.js')}else{alert('use%20with%20abc2svg%20editor')}})()"
+title="Copy me">keyboard 2</a>.</p>
+<h4>1.3 Publishing music on your web pages</h4>
+<p>To insert music in your web pages, you just have to insert the lines</p>
+<pre><code>&lt;script src=&quot;http://moinejf.free.fr/js/abcweb-1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://moinejf.free.fr/js/snd-1.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>in the HTML &lt;head&gt; and put the music as
+ABC sequences in the &lt;body&gt;.</p>
+<p><a href="http://moinejf.free.fr/abcm2ps-doc/tabac.html" title="J'ai du bon tabac">This example</a> demonstrates how to do it.
+(Note that, in the example, the paths are relative - see why below.)</p>
+<p>As it is apparent, HTML and ABC can be mixed in the same html file.
+Both are rendered in the order you defined them.</p>
+<p>You may also have noticed this CSS about SVG elements:<br>
+<code>        svg { display: block }</code></p>
+<p>This permits to have the music on separate vertical areas.<br>
+Without this CSS, the music is in-lined as in <a href="http://moinejf.free.fr/abcm2ps-doc/dansou-i.html" title="Tune index example">this other example</a>.</p>
+<p>Global ABC parameters may be added as <code>parameter=value</code> in the query string
+of the URL of the page. The <a href="http://moinejf.free.fr/abcm2ps-doc/tabac.html?pagescale=1.2" title="J'ai du bon tabac">following example</a> calls the same
+&quot;J'ai du bon tabac&quot; with <code>pagescale=1.2</code> (giving <code>%%pagescale 1.2</code>).</p>
+<p>In the above examples, all the ABC music is generated (displayed
+and ready to be played) by means of the script <strong>abcweb-1.js</strong>.<br>
+If there is a large collection of tunes, it may be preferable to
+link to the other script, <strong>abcweb1-1.js</strong>, which permits you
+to select particular tune(s). Without an explicit
+selection (see below), a list of the tunes is displayed, and,
+after a tune has been selected, the whole page is replaced by the music.
+(The HTML code, if any, is not displayed.)
+A menu on the top right corner of the screen
+permits to get the tune list again. Here is <a href="http://moinejf.free.fr/abc/boyvin-2-2.html" title="J. Boyvin organ tunes">a real example</a>.</p>
+<p>As you may notice in the menu, the edition of the ABC content is proposed.
+This permits, for example, to transpose the tunes.
+This edition is done inside the browser, so, your changes will be lost
+after leaving the page.</p>
+<p>When accessing such pages, an external selection of the tunes
+can be accomplished by ending the URL with the character '<code>#</code>'
+followed by a <a href="https://en.wikibooks.org/wiki/Regular_Expressions" title="Regular expressions">regular expression</a>
+to be applied to the tune headers.
+For instance, here is the <a href="http://moinejf.free.fr/abc/boyvin-2-2.html#T:Duo" title="Duo">'Duo' de J. Boyvin</a>.</p>
+<p>With any of the above scripts the music may be printed using
+the 'Print' button of the browser. You should add a style as:<br>
+<code>       @media print{body{margin:0;padding:0;border:0}.nop{display:none}}</code></p>
+<p>to remove the margins, the error messages and the menus from the
+printed pages.</p>
+<h4>1.4 Installing abc2svg on your system or on your server</h4>
+<p>The <strong>abc2svg</strong> package on my server is still being tuned
+which could change its behaviour at any unknown time; so you may
+prefer to install and run it from your own system.</p>
+<p>There are many ways to install abc2svg:</p>
+<ul>
+<li>
+<p><a href="http://abcplus.sourceforge.net/#abc2svg">Guido Gonzato's page</a><br>
+Guido maintains a ZIP archive of the abc2vg scripts after
+each release of a new version (many thanks, Guido!).<br>
+You can just download and unzip this archive. <strong>abc2svg</strong> should
+run immediately in your machine without connecting to my site.<br>
+In the same page, you can also find some binaries of QuickJS,
+a fast javascript interpreter (see below).</p>
+</li>
+<li>
+<p>tarball<br>
+From the timeline in the <a href="https://chiselapp.com/user/moinejf/repository/abc2svg/timeline">chisel repository</a>, you can get a tarball
+any version of the abc2svg source and install it in your system.<br>
+The abc2svg scripts must then be built from the raw source files
+described in the section 'Build' below.<br>
+The disadvantage of this approach is that if you want
+to use an other or newer version you need to download a new tarball.</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>fossil clone<br>
+If you can get the fossil program (one binary) for your system,
+you may clone the chisel repository by<br>
+<code>        fossil clone https://chiselapp.com/user/moinejf/repository/abc2svg abc2svg.fossil</code><br>
+<code>        fossil open abc2svg.fossil</code><br>
+and get the abc2svg source files containing the last changes
+between the official versions. Updating your files is done by<br>
+<code>        fossil pull</code><br>
+<code>        fossil update</code><br>
+Building the scripts is done in the same way as with a tarball.<br>
+The repository is presently over 34Mb.</p>
+<p>For those unfamiliar with <a href="https://fossil-scm.org/home/doc/trunk/www/index.wiki">fossil</a>, it is an integrated
+software management system similar to <a href="https://git-scm.com/">git</a>.<br>
+Chisel acts like a repository similar to <a href="https://github.com/">github</a>.</p>
+</li>
+</ul>
+<ul>
+<li>npm<br>
+The scripts may be installed from the <code>npm</code> repository by:<br>
+<code>        npm install abc2svg</code><br>
+They are ready to run (web and shell with nodejs).
+I upload a new npm version about once a month.</li>
+</ul>
+<p>Using bookmarklets with a local installation does not work directly
+because of a cross-domain security hole, but this is possible by running
+a local HTTP server (you will also have to change the location
+of the scripts in the bookmarklet code).</p>
+<p>If you have write access on a remote server, you may put there
+the abc2svg scripts. There is no automatic process to do that.
+You will have to
+<a href="http://moinejf.free.fr/js/" title="all abc2svg scripts">look at my site</a>
+to determine the files that need to be copied.</p>
+<p>In addition, you have to set the correct location of the abc2svg scripts
+in your pages. As a trick, I put the abc2svg scripts in a folder
+at the same level as the HTML files:</p>
+<p><code>        &lt;script src=&quot;../js/abcweb-1.js&quot;&gt;&lt;/script&gt;</code></p>
+<p>This allows the generation of the music to run either locally
+or remotely.</p>
+<h3>2. Automatic creation of music sheets</h3>
+<h4>2.1 abc2svg shell scripts</h4>
+<p>As you have seen, printing the music can be done easily with any web browser.
+You can automate the process of creating music sheets
+with <strong>abc2svg</strong> using shell scripts running a Javascript interpreter.</p>
+<p>The interfaces to the various interpreters are different. Below you will
+find the scripts I had to built.</p>
+<ul>
+<li><code>abcqjs</code> with <code>qjs</code> <a href="https://bellard.org/quickjs/">QuickJS by Fabrice Bellard and Charlie Gordon</a></li>
+<li><code>abcmjs</code> with <code>js78</code>, <code>js60</code>, <code>js52</code> or <code>js24</code> (Mozilla JavaScript shell)</li>
+<li><code>abcjsc</code> with <code>jsc</code> (webkit2gtk)</li>
+<li><code>abcnode</code> with <code>node</code> (nodeJS without module)</li>
+<li><code>abc2svg</code> with <code>node</code> (nodeJS with modules)</li>
+</ul>
+<p>Each script gets the abc2svg options and ABC files from the command line
+and sends the generated file to <code>stdout</code> and possible errors to <code>stderr</code>.<br>
+The general syntax of the command line is:<br>
+<code>        script [script.js] [options] ABC_file [[options] ABC_file]* [options]</code>
+with:</p>
+<ul>
+<li><code>script.js</code> is an optional backend script.<br>
+It defaults to <code>tohtml.js</code> (HTML+SVG)</li>
+<li><code>options</code> are the ABC options.<br>
+For compatibility, the last options are moved before the last ABC file.</li>
+</ul>
+<p>These scripts try to read a file <code>default.abc</code> at startup time.
+This file and also the files included by <code>%%abc-include</code> are searched
+in the current directory or in the colon separated list of directories
+contained in the environment variable <code>ABCPATH</code>.</p>
+<h4>2.2 Backend scripts</h4>
+<p>By default, the shell scripts generate (HTML+SVG) files.<br>
+This output may be modified by backend scripts. These ones must appear
+immediately following the name of the shell script.<br>
+They are:</p>
+<ul>
+<li>
+<p><code>toabc.js</code><br>
+This script returns the (selected) ABC tunes from the ABC source file<br>
+applying transposition.<br>
+The resulting file does not contain the formatting parameters.<br>
+Example:<br>
+<code>        abcqjs toabc.js my_file.abc --select X:2 &gt; tune_2.abc</code></p>
+</li>
+<li>
+<p><code>toabw.js</code><br>
+This script outputs an Abiword file (ABW+SVG) that can be read by some
+word processors (abiword, libreoffice...). The word processor allows
+you to convert the file to many other formats from a command line.<br>
+The abc2svg music font (<code>abc2svf.woff</code> or <code>abc2svg.ttf</code>) must be installed
+in the local system for displaying and/or converting the .abw file.<br>
+Example:<br>
+<code>        abcmjs toabw.js my_file.abc &gt; my_file.abw</code></p>
+</li>
+<li>
+<p><code>tomei.js</code><br>
+This script outputs the music as a <a href="https://music-encoding.org/">MEI</a> file.<br>
+Note, only one tune may be translated from ABC to MEI (multi-tunes ABC
+generates bad MEI).</p>
+</li>
+<li>
+<p><code>tonotes.js</code><br>
+This script outputs a list of the MIDI events.</p>
+</li>
+<li>
+<p><code>toodt.js</code><br>
+This script creates an Open Document (ODT+SVG) which can be read by most
+word processors (abiword, libreoffice...).<br>
+It runs only with the shell script <code>abc2svg</code> and asks for the npm module
+<code>jszip</code> to be installed.<br>
+The output ODT document may be specified in the command line argument
+after <code>-o</code> (default <code>abc.odt</code>).<br>
+Example:<br>
+<code>        abc2svg toodt.js my_file.abc -o my_file.odt</code></p>
+</li>
+<li>
+<p><code>toparam.js</code><br>
+This script just outputs the abc2svg parameters.</p>
+</li>
+</ul>
+<h4>2.3 PDF generation</h4>
+<p><code>abctopdf</code> is a shell script which converts ABC to PDF using one of the
+previous shell scripts and, either a chrome/chromium compatible web browser
+(settable by the environment variable 'BROWSER'),
+or the program <a href="https://weasyprint.org/">weasyprint</a>.</p>
+<p>Note also that, with <code>weasyprint</code>, the paper size is forced to A4.
+Instructions for changing this size may be found in the script source.</p>
+<p>The output PDF document may be specified by the command line argument <code>-o</code>
+(default <code>abc.pdf</code>).</p>
+<p>Example:<br>
+<code>        abctopdf my_file.abc -o my_file.pdf</code></p>
+<h3>3. Build</h3>
+<p>The abc2svg scripts which are used to render the music
+either by a web browser or by a shell script must be built from
+the source files you got by tarball or fossil clone.</p>
+<p>Quoting <a href="https://www.crockford.com/jsmin.html">Douglas Crockford</a>,
+minification is a process that removes comments and unnecessary whitespace from
+JavaScript files. It typically reduces file size by half, resulting in
+faster downloads.</p>
+<p>If you can run one of the tools <a href="https://ninja-build.org/">ninja</a>
+or <a href="https://github.com/michaelforney/samurai">samurai</a>, you can build
+the scripts</p>
+<ul>
+<li>
+<p>without minification<br>
+This is useful for debugging purposes and the scripts are more human friendly.</p>
+<p><code>        NOMIN=1 samu -v</code></p>
+<p>or</p>
+<p><code>        NOMIN=1</code><br>
+<code>        export NOMIN</code><br>
+<code>        ninja -v</code></p>
+</li>
+<li>
+<p>in a standard way with minification<br>
+In this case, you need one of the tools
+<a href="https://www.crockford.com/jsmin.html">JSMin</a> or
+<code>uglifyjs</code> which comes with nodeJS.</p>
+<p><code>        samu -v</code></p>
+</li>
+</ul>
+<p>If you also want to change or add music glyphs, you may edit the source
+file <code>font/abc2svg.sfd</code>.
+In this case, you will need both <code>base64</code> and <code>fontforge</code>, and run</p>
+<p><code>        samu -v font.js</code></p>
+<p>If you cannot or don't want to install <code>ninja</code> or <code>samurai</code>, you may build
+the abc2svg files by the shell script <code>./build</code>.
+(This script must be run by a Posix compatible shell.)</p>
+<h3>4. Inside the code of abc2svg</h3>
+<h4>4.1 Core and modules</h4>
+<p><code>abc2svg-1.js</code> is the <strong>abc2svg</strong> core.<br>
+It contains the ABC parser and the SVG generation engine.
+It is needed for all music rendering. It is automatically loaded
+by the web scripts and the shell scripts.<br>
+If you want to use the core with your own scripts,
+its API is described in the <a href="https://chiselapp.com/user/moinejf/repository/abc2svg/wiki?name=interface-1">wiki</a>.</p>
+<p>The core does not handle all the abc2svg commands/parameters.
+Some of them are treated by modules.
+A module is a script which is loaded in the browser or in the JS interpreter
+when the command it treats is seen in the ABC flow.<br>
+Detailed information about the modules may be found in the <a href="https://chiselapp.com/user/moinejf/repository/abc2svg/wiki?name=modules">wiki</a>.</p>
+<h4>4.2 Internal information</h4>
+<ul>
+<li>
+<p>The music is displayed as SVG images. There is one image per
+music line / text block.<br>
+If you want to move these images to some other files,
+each one must contain the full CSS and defs. For that, insert<br>
+<code>        %%fullsvg x</code><br>
+in the ABC file before rendering (see the
+<a href="http://moinejf.free.fr/abcm2ps-doc/fullsvg.xhtml">fullsvg documentation</a>
+for more information).</p>
+</li>
+<li>
+<p>Playing uses the HTML5 audio and/or the midi APIs.<br>
+For audio, by default, abc2svg uses a sound font (format SF2)
+which is split into one file
+per instrument. This sound font is stored in the subdirectory <code>Scc1t2/</code>.
+Each instrument file is a base64 encoded javascript array.<br>
+Other sound fonts may be used. Some of them are stored in the subdirectory
+<code>sf2/</code> (<code>AWE_ROM_gm</code> and <code>2MBGMGS</code>). Two formats are supported: raw SF2 and
+SF2 wrapped into javascript (the raw SF2 files can be loaded
+only when they are in the same HTTP domain).
+The shell script <code>sf.sh</code> (in <code>sf2/</code>) may be used to create the javacript files
+from raw SF2 files.<br>
+The sound font to be used for playing may be defined in the ABC code
+by the command <code>%%soundfont</code>. E.g.:<br>
+<code>        %%soundfont http://moinejf.free.fr/js/sf2/AWE_ROM_gm.js</code></p>
+</li>
+<li>
+<p>The names of the abc2svg scripts have a suffix which is the version of
+the core interface (actually '<code>-1</code>').</p>
+</li>
+</ul>
+<h4>4.3 More about the web scripts</h4>
+<p>Here are the scripts which are used in a web context:</p>
+<ul>
+<li><code>abcweb-1.js</code><br>
+This script replaces the ABC or MEI sequences found in the (X)HTML file
+by SVG images of the music.<br>
+The ABC sequences are searched:
+<ul>
+<li>
+<p>first inside &lt;script&gt; elements with a type
+<a href="https://www.iana.org/assignments/media-types/text/vnd.abc">&quot;text/vnd.abc&quot;</a>
+(the script tag is removed from the page),</p>
+</li>
+<li>
+<p>or inside (X)HTML elements with a class <code>abc</code> (lower case letters),</p>
+</li>
+<li>
+<p>otherwise on <code>X:</code> or <code>%abc-</code> at start of line up to a XML tag at start of line.</p>
+<p>When a ABC sequence is not included in a &lt;script&gt; and when it contains
+the characters '&lt;', '&gt;' or '&amp;',
+it must be enclosed in a XML comment or in a CDATA
+(%&lt;![CDATA[ .. %]]&gt; - the comment or CDATA must be in a ABC comment).<br>
+See the
+<a href="http://moinejf.free.fr/abcm2ps-doc/beginml.xhtml">%%beginml documentation</a>
+for an example, and here is <a href="http://moinejf.free.fr/abcm2ps-doc/inline.html" title="abc2svg - inline music">how to put inline music in HTML</a>.<br>
+Playing and highlighting the played notes may be offered loading
+the script <code>snd-1.js</code> (see below).</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p><code>abcweb1-1.js</code><br>
+The page body is analyzed as a ABC file and its content is
+replaced by music as SVG images.<br>
+If the page contains reserved XML characters ('&lt;', '&gt;' and '&amp;'),
+the ABC code must be enclosed in a
+<code>         &lt;script type=&quot;text/vnd.abc&quot;&gt; .. &lt;/script&gt;</code>
+sequence.</p>
+<p>When there are many tunes in the file, the script displays a list
+of the tunes. The list step may be bypassed when the URL of the file
+contains a regular expression in the 'hash' value ('#' followed by
+a string at the end of the URL).
+This string does a
+<a href="http://moinejf.free.fr/abcm2ps-doc/select.xhtml">%%select</a>.</p>
+<p>When one or many tunes are displayed, a menu in the top/right corner
+offers to go back to the tune list or to modify the ABC source.</p>
+</li>
+<li>
+<p><code>snd-1.js</code><br>
+This script may be used with <code>abcweb-1.js</code> or <code>abcweb1-1.js</code>
+to play the rendered ABC music.</p>
+</li>
+<li>
+<p><code>abcdoc-1.js</code><br>
+This script is mainly used for ABC documentation.
+It lets the ABC source sequences in the page before the SVG images.<br>
+See the source of
+<a href="http://moinejf.free.fr/abcm2ps-doc/features.html">abcm2ps/abc2svg features</a>
+for an example.</p>
+</li>
+</ul>
+<h3>5. MEI support</h3>
+<p>As an experimental feature, an extended core <code>mei2svg-1.js</code> may be generated.
+This one may handle both the ABC and
+<a href="https://music-encoding.org/" title="Music Encoding Initiative">MEI</a>
+notations.</p>
+<p>In browser mode, the script <code>abcweb-1.js</code> loads either <code>abc2svg-1.js</code> or
+<code>mei2svg-1.js</code> after checking if <code>&lt;mei</code> exists in the page (see
+<a href="http://moinejf.free.fr/abc/Czerny_op603_6.html">this tune</a>
+for an example).</p>
+<p>In shell mode, the script <code>abcqjs</code> also loads the right abc2svg core
+according to the source file extension (<code>.abc</code> or <code>.mei</code>).</p>
+<h3>6. Credit</h3>
+<p><strong>abc2svg</strong> includes the following packages:</p>
+<ul>
+<li>
+<p>wps by Tomas Hlavaty<br>
+<a href="http://logand.com/sw/wps/log.html">http://logand.com/sw/wps/log.html</a></p>
+</li>
+<li>
+<p>JavaScript SoundFont 2 Parser by imaya/GREE Inc and Colin Clark<br>
+<a href="https://github.com/colinbdclark/sf2-parser">https://github.com/colinbdclark/sf2-parser</a></p>
+</li>
+<li>
+<p>Scc1t2<br>
+<a href="http://www.ibiblio.org/thammer/HammerSound/localfiles/soundfonts/">http://www.ibiblio.org/thammer/HammerSound/localfiles/soundfonts/</a></p>
+</li>
+<li>
+<p>strftime by T. H. Doan<br>
+<a href="https://thdoan.github.io/strftime/">https://thdoan.github.io/strftime/</a></p>
+</li>
+</ul>
+<p><a href="http://moinejf.free.fr">Jean-François Moine</a></p>
